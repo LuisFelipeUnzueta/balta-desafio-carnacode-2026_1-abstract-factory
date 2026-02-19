@@ -12,53 +12,53 @@ namespace DesignPatternChallenge.Services
         }
 
         /// <summary>
-        /// Processa um pagamento usando os componentes do gateway configurado.
+        /// Processes a payment using the components of the configured gateway.
         /// 
-        /// Fluxo:
-        /// 1. Cria componentes através da factory
-        /// 2. Valida o cartão
-        /// 3. Processa a transação
-        /// 4. Registra o resultado
+        /// Flow:
+        /// 1. Create components through the factory
+        /// 2. Validate the card
+        /// 3. Process the transaction
+        /// 4. Log the result
         /// </summary>
         public bool ProcessPayment(decimal amount, string cardNumber)
         {
-            // Validação de parâmetros
+            // Parameter validation
             if (amount <= 0)
             {
-                throw new ArgumentException("Valor deve ser maior que zero", nameof(amount));
+                throw new ArgumentException("Amount must be greater than zero", nameof(amount));
             }
 
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                throw new ArgumentException("Número do cartão não pode ser vazio", nameof(cardNumber));
+                throw new ArgumentException("Card number cannot be empty", nameof(cardNumber));
             }
 
             try
             {
-                // 1. Usa a factory para criar todos os componentes necessários
-                // Garante que todos os componentes sejam da mesma família (compatíveis)
+                // 1. Use the factory to create all necessary components
+                // Ensures that all components are from the same family (compatible)
                 var validator = _factory.CreateValidator();
                 var processor = _factory.CreateProcessor();
                 var logger = _factory.CreateLogger();
 
-                // 2. Valida o cartão
+                // 2. Validate the card
                 if (!validator.ValidateCard(cardNumber))
                 {
-                    logger.Log($"Validação falhou para o cartão terminado em {cardNumber.Substring(cardNumber.Length - 4)}");
+                    logger.Log($"Validation failed for card ending in {cardNumber.Substring(cardNumber.Length - 4)}");
                     return false;
                 }
 
-                // 3. Processa a transação
+                // 3. Process the transaction
                 string transactionId = processor.ProcessTransaction(amount, cardNumber);
 
-                // 4. Registra o sucesso
-                logger.Log($"Transação {transactionId} processada com sucesso - Valor: R$ {amount:N2}");
+                // 4. Log success
+                logger.Log($"Transaction {transactionId} processed successfully - Amount: $ {amount:N2}");
 
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERRO] Falha ao processar pagamento: {ex.Message}");
+                Console.WriteLine($"[ERROR] Failed to process payment: {ex.Message}");
                 throw;
             }
         }

@@ -9,18 +9,18 @@ namespace DesignPatternChallenge.Gateways.PagSeguro
         {
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                Console.WriteLine("PagSeguro: Número do cartão não pode ser vazio");
+                Console.WriteLine("PagSeguro: Card number cannot be empty");
                 return false;
             }
 
-            Console.WriteLine("PagSeguro: Validando cartão...");
+            Console.WriteLine("PagSeguro: Validating card...");
 
-            // Regra específica do PagSeguro: 16 dígitos
+            // PagSeguro specific rule: 16 digits
             bool isValid = cardNumber.Length == 16;
 
             if (!isValid)
             {
-                Console.WriteLine("PagSeguro: Cartão deve ter 16 dígitos");
+                Console.WriteLine("PagSeguro: Card must have 16 digits");
             }
 
             return isValid;

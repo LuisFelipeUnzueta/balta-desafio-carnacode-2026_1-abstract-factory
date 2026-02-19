@@ -16,7 +16,7 @@ namespace DesignPatternChallenge.Factories
                 GatewayType.PagSeguro => new PagSeguroFactory(),
                 GatewayType.MercadoPago => new MercadoPagoFactory(),
                 GatewayType.Stripe => new StripeFactory(),
-                _ => throw new ArgumentException($"Gateway '{gatewayType}' não é suportado", nameof(gatewayType))
+                _ => throw new ArgumentException($"Gateway '{gatewayType}' is not supported", nameof(gatewayType))
             };
         }
 
@@ -24,16 +24,16 @@ namespace DesignPatternChallenge.Factories
         {
             if (string.IsNullOrWhiteSpace(gatewayName))
             {
-                throw new ArgumentException("Nome do gateway não pode ser vazio", nameof(gatewayName));
+                throw new ArgumentException("Gateway name cannot be empty", nameof(gatewayName));
             }
 
-            // Tenta fazer parse para o enum
+            // Try to parse to the enum
             if (Enum.TryParse<GatewayType>(gatewayName, true, out var gatewayType))
             {
                 return GetFactory(gatewayType);
             }
 
-            throw new ArgumentException($"Gateway '{gatewayName}' não é suportado", nameof(gatewayName));
+            throw new ArgumentException($"Gateway '{gatewayName}' is not supported", nameof(gatewayName));
         }
     }
 }

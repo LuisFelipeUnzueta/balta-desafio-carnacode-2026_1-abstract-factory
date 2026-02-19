@@ -4,11 +4,11 @@ using DesignPatternChallenge.Contracts;
 namespace DesignPatternChallenge.Gateways.PayPal
 {
     // ═══════════════════════════════════════════════════════════════
-    // PASSO 1: Implementar ICardValidator
+    // STEP 1: Implement ICardValidator
     // ═══════════════════════════════════════════════════════════════
 
     /// <summary>
-    /// Validador de cartões específico do PayPal.
+    /// PayPal specific card validator.
     /// </summary>
     public class PayPalValidator : ICardValidator
     {
@@ -16,18 +16,18 @@ namespace DesignPatternChallenge.Gateways.PayPal
         {
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                Console.WriteLine("PayPal: Número do cartão não pode ser vazio");
+                Console.WriteLine("PayPal: Card number cannot be empty");
                 return false;
             }
 
-            Console.WriteLine("PayPal: Validando cartão...");
+            Console.WriteLine("PayPal: Validating card...");
 
-            // PayPal aceita qualquer cartão de 16 dígitos
+            // PayPal accepts any 16-digit card
             bool isValid = cardNumber.Length == 16;
 
             if (!isValid)
             {
-                Console.WriteLine("PayPal: Cartão deve ter 16 dígitos");
+                Console.WriteLine("PayPal: Card must have 16 digits");
             }
 
             return isValid;
@@ -35,11 +35,11 @@ namespace DesignPatternChallenge.Gateways.PayPal
     }
 
     // ═══════════════════════════════════════════════════════════════
-    // PASSO 2: Implementar IPaymentProcessor
+    // STEP 2: Implement IPaymentProcessor
     // ═══════════════════════════════════════════════════════════════
 
     /// <summary>
-    /// Processador de pagamentos específico do PayPal.
+    /// PayPal specific payment processor.
     /// </summary>
     public class PayPalProcessor : IPaymentProcessor
     {
@@ -47,31 +47,31 @@ namespace DesignPatternChallenge.Gateways.PayPal
         {
             if (amount <= 0)
             {
-                throw new ArgumentException("Valor deve ser maior que zero", nameof(amount));
+                throw new ArgumentException("Amount must be greater than zero", nameof(amount));
             }
 
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                throw new ArgumentException("Número do cartão não pode ser vazio", nameof(cardNumber));
+                throw new ArgumentException("Card number cannot be empty", nameof(cardNumber));
             }
 
-            Console.WriteLine($"PayPal: Processando ${amount:N2} USD...");
+            Console.WriteLine($"PayPal: Processing ${amount:N2} USD...");
 
-            // Gera ID de transação específico do PayPal
+            // Generates a PayPal-specific transaction ID
             string transactionId = $"PAYPAL-{Guid.NewGuid().ToString().Substring(0, 10).ToUpper()}";
 
-            Console.WriteLine($"PayPal: Transação processada com sucesso - ID: {transactionId}");
+            Console.WriteLine($"PayPal: Transaction processed successfully - ID: {transactionId}");
 
             return transactionId;
         }
     }
 
     // ═══════════════════════════════════════════════════════════════
-    // PASSO 3: Implementar ITransactionLogger
+    // STEP 3: Implement ITransactionLogger
     // ═══════════════════════════════════════════════════════════════
 
     /// <summary>
-    /// Logger específico do PayPal.
+    /// PayPal specific logger.
     /// </summary>
     public class PayPalLogger : ITransactionLogger
     {
@@ -82,19 +82,19 @@ namespace DesignPatternChallenge.Gateways.PayPal
                 return;
             }
 
-            // Formato específico de log do PayPal
+            // PayPal specific log format
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
             Console.WriteLine($"[PayPal Log] {timestamp} - {message}");
         }
     }
 
     // ═══════════════════════════════════════════════════════════════
-    // PASSO 4: Implementar IPaymentGatewayFactory (Concrete Factory)
+    // STEP 4: Implement IPaymentGatewayFactory (Concrete Factory)
     // ═══════════════════════════════════════════════════════════════
 
     /// <summary>
-    /// Factory concreta para o PayPal.
-    /// Cria a família completa de componentes do PayPal.
+    /// Concrete factory for PayPal.
+    /// Creates the complete family of PayPal components.
     /// </summary>
     public class PayPalFactory : IPaymentGatewayFactory
     {
@@ -116,12 +116,12 @@ namespace DesignPatternChallenge.Gateways.PayPal
 }
 
 // ═════════════════════════════════════════════════════════════════════
-// RESULTADO: ZERO MODIFICAÇÕES NECESSÁRIAS EM CÓDIGO EXISTENTE!
+// RESULT: ZERO MODIFICATIONS REQUIRED IN EXISTING CODE!
 // ═════════════════════════════════════════════════════════════════════
 //
-// Para usar:
-// 1. Adicionar PayPal ao enum GatewayType (opcional, pode usar injeção direta)
-// 2. Adicionar case no PaymentGatewayFactoryProvider (opcional)
-// 3. Ou usar diretamente: new PaymentService(new PayPalFactory())
+// To use:
+// 1. Add PayPal to GatewayType enum (optional, can use direct injection)
+// 2. Add case to PaymentGatewayFactoryProvider (optional)
+// 3. Or use directly: new PaymentService(new PayPalFactory())
 //
 // ═══════════════════════════════════════════════════════════════════════

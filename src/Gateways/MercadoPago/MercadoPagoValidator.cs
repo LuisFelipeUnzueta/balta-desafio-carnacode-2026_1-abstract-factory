@@ -9,24 +9,24 @@ namespace DesignPatternChallenge.Gateways.MercadoPago
         {
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                Console.WriteLine("MercadoPago: Número do cartão não pode ser vazio");
+                Console.WriteLine("MercadoPago: Card number cannot be empty");
                 return false;
             }
 
-            Console.WriteLine("MercadoPago: Validando cartão...");
+            Console.WriteLine("MercadoPago: Validating card...");
 
-            // Regra específica do MercadoPago: 16 dígitos e deve começar com '5'
+            // MercadoPago specific rule: 16 digits and must start with '5'
             bool isValid = cardNumber.Length == 16 && cardNumber.StartsWith("5");
 
             if (!isValid)
             {
                 if (cardNumber.Length != 16)
                 {
-                    Console.WriteLine("MercadoPago: Cartão deve ter 16 dígitos");
+                    Console.WriteLine("MercadoPago: Card must have 16 digits");
                 }
                 else if (!cardNumber.StartsWith("5"))
                 {
-                    Console.WriteLine("MercadoPago: Aceita apenas Mastercard (começa com 5)");
+                    Console.WriteLine("MercadoPago: Only accepts Mastercard (starts with 5)");
                 }
             }
 

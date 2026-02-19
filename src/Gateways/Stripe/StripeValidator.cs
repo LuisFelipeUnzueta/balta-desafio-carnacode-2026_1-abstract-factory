@@ -9,24 +9,24 @@ namespace DesignPatternChallenge.Gateways.Stripe
         {
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                Console.WriteLine("Stripe: Número do cartão não pode ser vazio");
+                Console.WriteLine("Stripe: Card number cannot be empty");
                 return false;
             }
 
-            Console.WriteLine("Stripe: Validando cartão...");
+            Console.WriteLine("Stripe: Validating card...");
 
-            // Regra específica do Stripe: 16 dígitos e deve começar com '4'
+            // Stripe specific rule: 16 digits and must start with '4'
             bool isValid = cardNumber.Length == 16 && cardNumber.StartsWith("4");
 
             if (!isValid)
             {
                 if (cardNumber.Length != 16)
                 {
-                    Console.WriteLine("Stripe: Cartão deve ter 16 dígitos");
+                    Console.WriteLine("Stripe: Card must have 16 digits");
                 }
                 else if (!cardNumber.StartsWith("4"))
                 {
-                    Console.WriteLine("Stripe: Aceita apenas Visa (começa com 4)");
+                    Console.WriteLine("Stripe: Only accepts Visa (starts with 4)");
                 }
             }
 

@@ -9,20 +9,20 @@ namespace DesignPatternChallenge.Gateways.PagSeguro
         {
             if (amount <= 0)
             {
-                throw new ArgumentException("Valor deve ser maior que zero", nameof(amount));
+                throw new ArgumentException("Amount must be greater than zero", nameof(amount));
             }
 
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                throw new ArgumentException("Número do cartão não pode ser vazio", nameof(cardNumber));
+                throw new ArgumentException("Card number cannot be empty", nameof(cardNumber));
             }
 
-            Console.WriteLine($"PagSeguro: Processando R$ {amount:N2}...");
+            Console.WriteLine($"PagSeguro: Processing $ {amount:N2}...");
 
-            // Simula processamento e gera ID de transação específico do PagSeguro
+            // Simulates processing and generates a PagSeguro-specific transaction ID
             string transactionId = $"PAGSEG-{Guid.NewGuid().ToString().Substring(0, 8).ToUpper()}";
 
-            Console.WriteLine($"PagSeguro: Transação processada com sucesso - ID: {transactionId}");
+            Console.WriteLine($"PagSeguro: Transaction processed successfully - ID: {transactionId}");
 
             return transactionId;
         }

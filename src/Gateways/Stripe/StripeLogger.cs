@@ -12,7 +12,7 @@ namespace DesignPatternChallenge.Gateways.Stripe
                 return;
             }
 
-            // Formato específico de log do Stripe
+            // Stripe specific log format
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             Console.WriteLine($"[Stripe Log] {timestamp}: {message}");
         }

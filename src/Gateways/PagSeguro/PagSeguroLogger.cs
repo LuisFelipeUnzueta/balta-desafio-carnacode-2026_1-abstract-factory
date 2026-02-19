@@ -12,7 +12,7 @@ namespace DesignPatternChallenge.Gateways.PagSeguro
                 return;
             }
 
-            // Formato específico de log do PagSeguro
+            // PagSeguro specific log format
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             Console.WriteLine($"[PagSeguro Log] {timestamp}: {message}");
         }

@@ -1,8 +1,8 @@
 ![CR-1](https://github.com/user-attachments/assets/5b3f4530-df7d-4f27-abe2-4a9259ddf62a)
 
-## 🥁 CarnaCode 2026 - Desafio 01 - Abstract Factory
+## 🥁 CarnaCode 2026 - Challenge 01 - Abstract Factory
 
-Oi, eu sou o [seu nome aqui] e este é o espaço onde compartilho minha jornada de aprendizado durante o desafio **CarnaCode 2026**, realizado pelo [balta.io](https://balta.io). 👻
+Oi, eu sou o [Luis Felipe] e este é o espaço onde compartilho minha jornada de aprendizado durante o desafio **CarnaCode 2026**, realizado pelo [balta.io](https://balta.io). 👻
 
 Aqui você vai encontrar projetos, exercícios e códigos que estou desenvolvendo durante o desafio. O objetivo é colocar a mão na massa, testar ideias e registrar minha evolução no mundo da tecnologia.
 
@@ -25,4 +25,4 @@ O desafio **CarnaCode 2026** consiste em implementar todos os 23 padrões de pro
 Minha principal fonte de conhecimento durante o desafio foi o eBook gratuito [Fundamentos dos Design Patterns](https://lp.balta.io/ebook-fundamentos-design-patterns).
 
 ### Veja meu progresso no desafio
-[Incluir link para o repositório central]
+- [Repositório Central](https://github.com/LuisFelipeUnzueta/Desafio-DesignPattern-2026-Balta)

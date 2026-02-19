@@ -12,7 +12,7 @@ namespace DesignPatternChallenge.Gateways.MercadoPago
                 return;
             }
 
-            // Formato específico de log do MercadoPago
+            // MercadoPago specific log format
             string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             Console.WriteLine($"[MercadoPago Log] {timestamp}: {message}");
         }

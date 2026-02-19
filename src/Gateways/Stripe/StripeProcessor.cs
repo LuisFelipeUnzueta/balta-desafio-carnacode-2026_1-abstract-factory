@@ -9,20 +9,20 @@ namespace DesignPatternChallenge.Gateways.Stripe
         {
             if (amount <= 0)
             {
-                throw new ArgumentException("Valor deve ser maior que zero", nameof(amount));
+                throw new ArgumentException("Amount must be greater than zero", nameof(amount));
             }
 
             if (string.IsNullOrWhiteSpace(cardNumber))
             {
-                throw new ArgumentException("Número do cartão não pode ser vazio", nameof(cardNumber));
+                throw new ArgumentException("Card number cannot be empty", nameof(cardNumber));
             }
 
-            Console.WriteLine($"Stripe: Processando ${amount:N2}...");
+            Console.WriteLine($"Stripe: Processing ${amount:N2}...");
 
-            // Simula processamento e gera ID de transação específico do Stripe
+            // Simulates processing and generates a Stripe-specific transaction ID
             string transactionId = $"STRIPE-{Guid.NewGuid().ToString().Substring(0, 8).ToUpper()}";
 
-            Console.WriteLine($"Stripe: Transação processada com sucesso - ID: {transactionId}");
+            Console.WriteLine($"Stripe: Transaction processed successfully - ID: {transactionId}");
 
             return transactionId;
         }
